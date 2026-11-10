@@ -21,17 +21,25 @@ session = Session(engine)
 def home():
     return {"Duka FastAPI Version": "1.0"}
 
-@app.post("/products")
+@app.post("/products", response_model=ProductResponse)
 def create_product(prod: ProductRequest):
     # Store in the database
     dbprod = Product(
         user_id=prod.user_id,
         product_name=prod.product_name,
         buying_price=prod.buying_price,
-        selling_price=prod.selling_price,
+        selling_price=prod.selling_price
         
     )
 
     session.add(dbprod)
     session.commit()
     return {"dbprod":dbprod}
+
+
+@app.get("/products", response_model=list[ProductResponse])
+def get_product():
+    query = select(Product)
+    products = session.scalars(query)
+
+    return products
