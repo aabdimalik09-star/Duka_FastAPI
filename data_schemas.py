@@ -1,4 +1,5 @@
 from pydantic import BaseModel, ConfigDict
+from datetime import datetime
 
 
 # CREATE PRODUCT REQUEST
@@ -26,6 +27,7 @@ class ProductResponse(BaseModel):
     product_name: str
     buying_price: float
     selling_price: float 
+    created_at : datetime  
 
 
     
