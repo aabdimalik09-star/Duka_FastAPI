@@ -9,10 +9,6 @@ from datetime import datetime
 from sqlalchemy import DateTime
 
 
-
-
-
-
 class Base(DeclarativeBase):
     pass
 
@@ -42,7 +38,6 @@ class Product(Base):
     )
 
 
-
 class Sale(Base):
     __tablename__ = "sales"
 
@@ -69,7 +64,6 @@ class Purchase(Base):
     quantity: Mapped[int] = mapped_column(Integer)
     total_cost: Mapped[float] = mapped_column(Float)
     created_at: Mapped[datetime] = mapped_column(DateTime, default=datetime.now)
-
 
 
 
